@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:noNamespaceSchemaLocation="items.xsd">
+	<relations>
+		<relation code="Film2Actor" localized="false" generate="true" autocreate="true">
+			<deployment table="Film2Actor" typecode="11003"/>
+			<sourceElement type="Film" qualifier="film" cardinality="many">
+				<description>Films</description>
+				<modifiers read="true" write="true" search="true" optional="true"/>
+			</sourceElement>
+			<targetElement type="Actor" qualifier="actor" cardinality="many">
+				<description>Actors</description>
+				<modifiers read="true" write="true" search="true" optional="true"/>
+			</targetElement>
+		</relation>
+	</relations>
+	<itemtypes>
+		<itemtype code="CarProduct" autocreate="true" generate="true" extends="Product" jaloclass="training.my.jalo.CarProduct">
+			<attributes>
+				<attribute qualifier="color" type="java.lang.String" generate="true">
+					<persistence type="property"/>
+					<modifiers read="true" write="true" optional="true"/>
+				</attribute>
+				<attribute qualifier="weight" type="java.lang.Double" generate="true">
+					<persistence type="property"/>
+					<modifiers read="true" write="true" optional="true"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+		<itemtype code="Film" autocreate="true" generate="true" extends="GenericItem" jaloclass="training.my.jalo.Film">
+			<deployment table="Film" typecode="11001"/>
+		</itemtype>
+		<itemtype code="Actor" autocreate="true" generate="true" extends="GenericItem" jaloclass="training.my.jalo.Film">
+			<deployment table="Actor" typecode="11002"/>
+		</itemtype>
+	</itemtypes>
+</items>
