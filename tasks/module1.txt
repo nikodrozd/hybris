@@ -1,0 +1,22 @@
+Comments for Module 1 tasks:
+1. Create a new type “CarProduct” which extends Product'. Add attributes color and weight. Check the result via Backoffice.
+//added to /resources/myextension-items.xml
+
+2. Create new types: Film and Actor. Add many-to-many relation between them. Check the result via Backoffice.
+//added to resources/myextension-items.xml
+
+3. Create impex that will update all the product names to “The Best Product Ever”
+//impex was imported manually via /hac;
+//you can find it in /resources/impex/essentialdataUpdateProductNames.impex
+
+4. Create impex that will restrict ability to change the Product name for any user group
+//as discussed, impex is prepared for one of parent user groups (employeegroup) and checked on child group;
+//you can find it in /resources/impex/essentialUserRightsRestriction.impex
+
+5. With the flexible search query (executing from hac) select all the users with the name starting from “M”.
+//query was tested via /hac
+//select * from {User} where {name} like 'M%'
+
+6. With the flexible search query (executing from hac) select all the products from the “Staged” catalog
+//query was tested via /hac
+//select {p.pk}, {p.name}, {cv.version} from {Product as p join CatalogVersion as cv on {p.catalogversion} = {cv.pk}} where {cv.version} = 'Staged'
