@@ -6,15 +6,11 @@ import de.hybris.platform.core.model.order.OrderModel;
 import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.servicelayer.ServicelayerTransactionalTest;
 import de.hybris.platform.servicelayer.model.ModelService;
-import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
-import de.hybris.platform.servicelayer.search.FlexibleSearchService;
 import org.junit.Before;
 import org.junit.Test;
 import training.my.service.OrderService;
 
 import javax.annotation.Resource;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
@@ -24,7 +20,7 @@ import static org.junit.Assert.assertNotNull;
 public class OrderServiceImplIntegrationTest extends ServicelayerTransactionalTest {
 
     @Resource
-    private OrderService orderService;
+    private OrderService myextensionOrderService;
 
     @Resource
     private ModelService modelService;
@@ -42,9 +38,9 @@ public class OrderServiceImplIntegrationTest extends ServicelayerTransactionalTe
         //given
 
         //when
-        int resultBefore = orderService.getTotalNumberOfOrders();
+        int resultBefore = myextensionOrderService.getTotalNumberOfOrders();
         modelService.save(order1);
-        int resultAfter = orderService.getTotalNumberOfOrders();
+        int resultAfter = myextensionOrderService.getTotalNumberOfOrders();
 
         //then
         assertEquals(1, resultAfter - resultBefore);
@@ -56,7 +52,7 @@ public class OrderServiceImplIntegrationTest extends ServicelayerTransactionalTe
         modelService.save(order2);
 
         //when
-        OrderModel latestOrder = orderService.getLatestOrder();
+        OrderModel latestOrder = myextensionOrderService.getLatestOrder();
 
         //then
         assertNotNull(latestOrder);
@@ -66,7 +62,7 @@ public class OrderServiceImplIntegrationTest extends ServicelayerTransactionalTe
     @Test
     public void checkUserWithMostOrders() {
         //when
-        UserModel resultUser = orderService.getUserWithMostOrders();
+        UserModel resultUser = myextensionOrderService.getUserWithMostOrders();
 
         //then
         assertNotNull(resultUser);

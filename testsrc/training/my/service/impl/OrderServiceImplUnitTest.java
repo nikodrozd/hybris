@@ -22,7 +22,7 @@ import static org.mockito.Mockito.*;
 @UnitTest
 public class OrderServiceImplUnitTest {
 
-    private OrderServiceImpl orderService;
+    private OrderServiceImpl myextensionOrderService;
 
     @Mock
     private FlexibleSearchService flexibleSearchService;
@@ -31,8 +31,8 @@ public class OrderServiceImplUnitTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        orderService = new OrderServiceImpl();
-        orderService.setFlexibleSearchService(flexibleSearchService);
+        myextensionOrderService = new OrderServiceImpl();
+        myextensionOrderService.setFlexibleSearchService(flexibleSearchService);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class OrderServiceImplUnitTest {
         when(flexibleSearchService.search(any(FlexibleSearchQuery.class))).thenReturn(searchResult);
 
         //then
-        final int result = orderService.getTotalNumberOfOrders();
+        final int result = myextensionOrderService.getTotalNumberOfOrders();
 
         assertEquals(2, result);
         verify(flexibleSearchService).search(any(FlexibleSearchQuery.class));
@@ -123,7 +123,7 @@ public class OrderServiceImplUnitTest {
         when(flexibleSearchService.search(any(FlexibleSearchQuery.class))).thenReturn(searchResult);
 
         //then
-        OrderModel resultOrder = orderService.getLatestOrder();
+        OrderModel resultOrder = myextensionOrderService.getLatestOrder();
 
         assertEquals(order1, resultOrder);
         verify(flexibleSearchService).search(any(FlexibleSearchQuery.class));
@@ -168,7 +168,7 @@ public class OrderServiceImplUnitTest {
         when(flexibleSearchService.search(any(FlexibleSearchQuery.class))).thenReturn(searchResult);
 
         //then
-        UserModel resultUser = orderService.getUserWithMostOrders();
+        UserModel resultUser = myextensionOrderService.getUserWithMostOrders();
 
         assertEquals(user1, resultUser);
         verify(flexibleSearchService).search(any(FlexibleSearchQuery.class));

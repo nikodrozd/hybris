@@ -70,6 +70,12 @@
 	      	            !execution(* getPK(..))" />  	            
 	       <aop:pointcut id="profiledMethods" expression="execution(* *(..))" />	
 	  -->
+
+    <bean id="myextensionOrderService" class="training.my.service.impl.OrderServiceImpl">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+        <property name="searchRestrictionService" ref="searchRestrictionService"/>
+        <property name="userService" ref="userService"/>
+    </bean>
 	
     <bean id="myextensionSystemSetup" class="training.my.setup.MyextensionSystemSetup">
         <!-- constructor arg injection example -->
@@ -80,10 +86,6 @@
         <!-- setter injection example -->
         <property name="modelService" ref="modelService"/>
         <property name="mediaService" ref="mediaService"/>
-        <property name="flexibleSearchService" ref="flexibleSearchService"/>
-    </bean>
-
-    <bean id="orderService" class="training.my.service.impl.OrderServiceImpl">
         <property name="flexibleSearchService" ref="flexibleSearchService"/>
     </bean>
 			
