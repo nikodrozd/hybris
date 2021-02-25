@@ -88,5 +88,20 @@
         <property name="mediaService" ref="mediaService"/>
         <property name="flexibleSearchService" ref="flexibleSearchService"/>
     </bean>
-			
+
+    <bean id="myextensionProductFacade" class="training.my.facades.impl.DefaultMyextensionProductFacade">
+        <property name="productConverter" ref="productConverter"/>
+        <property name="productService" ref="productService"/>
+        <property name="productConfiguredPopulator" ref="defaultProductConfiguredPopulator"/>
+    </bean>
+
+    <bean id="myextensionProductPopulator" class="training.my.converters.populator.MyextensionProductPopulator"/>
+
+    <bean parent="configurablePopulatorModification">
+        <property name="target" ref="productBasicPopulator" />
+        <property name="keyType" value="java.lang.String" />
+        <property name="key" value="customTestField" />
+        <property name="add" ref="myextensionProductPopulator" />
+    </bean>
+
 </beans>

@@ -5,7 +5,7 @@
            
     
     <extension abstractclassprefix="Generated" classprefix="Myextension" jaloLogicFree="true" managername="MyextensionManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="myextension" usemaven="false">
-                  
+        <requires-extension name="commercefacades"/>
       
         
         <!-- for more information on maven managed libraries please consult https://wiki.hybris.com/x/Nq8sDQ -->

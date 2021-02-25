@@ -8,6 +8,10 @@
 
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
 
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="customTestField" type="java.lang.String"/>
+	</bean>
+
 	<!--
 		Example Data POJO
 	
