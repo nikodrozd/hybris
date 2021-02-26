@@ -10,6 +10,8 @@
 
     <h2>Welcome to "myextension" extension</h2>
 
+    <h3><b>Total number of orders: </b>${totalNumberOfOrders}</h3>
+
     <h3><b>Getting started</b></h3>
 
     <div>

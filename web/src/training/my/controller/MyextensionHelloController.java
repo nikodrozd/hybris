@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import training.my.service.MyextensionOrderService;
 import training.my.service.MyextensionService;
 
 
@@ -20,10 +21,14 @@ public class MyextensionHelloController
 	@Autowired
 	private MyextensionService myextensionService;
 
+	@Autowired
+	private MyextensionOrderService orderService;
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String printWelcome(final ModelMap model)
 	{
 		model.addAttribute("logoUrl", myextensionService.getHybrisLogoUrl(PLATFORM_LOGO_CODE));
+		model.addAttribute("totalNumberOfOrders", orderService.getTotalNumberOfOrders());
 		return "welcome";
 	}
 }
