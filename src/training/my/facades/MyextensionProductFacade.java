@@ -7,6 +7,6 @@ import java.util.Collection;
 
 public interface MyextensionProductFacade {
 
-    public ProductData getProductForCodeAndOptions(final String code, final Collection<ProductOption> options);
+    ProductData getProductForCodeAndOptions(final String code);
 
 }

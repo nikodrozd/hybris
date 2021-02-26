@@ -20,9 +20,9 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 @UnitTest
-public class OrderServiceImplUnitTest {
+public class DefaultMyextensionOrderServiceUnitTest {
 
-    private OrderServiceImpl myextensionOrderService;
+    private DefaultMyextensionOrderService myextensionOrderService;
 
     @Mock
     private FlexibleSearchService flexibleSearchService;
@@ -31,7 +31,7 @@ public class OrderServiceImplUnitTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        myextensionOrderService = new OrderServiceImpl();
+        myextensionOrderService = new DefaultMyextensionOrderService();
         myextensionOrderService.setFlexibleSearchService(flexibleSearchService);
     }
 

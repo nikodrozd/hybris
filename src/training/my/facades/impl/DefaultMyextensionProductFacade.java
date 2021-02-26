@@ -2,7 +2,6 @@ package training.my.facades.impl;
 
 import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.ProductData;
-import de.hybris.platform.converters.ConfigurablePopulator;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.dto.converter.Converter;
@@ -14,17 +13,11 @@ public class DefaultMyextensionProductFacade implements MyextensionProductFacade
 
     private Converter<ProductModel, ProductData> productConverter;
     private ProductService productService;
-    private ConfigurablePopulator<ProductModel, ProductData, ProductOption> productConfiguredPopulator;
 
     @Override
-    public ProductData getProductForCodeAndOptions(String code, Collection<ProductOption> options) {
+    public ProductData getProductForCodeAndOptions(String code) {
         ProductModel productModel = getProductService().getProductForCode(code);
         ProductData productData = getProductConverter().convert(productModel);
-
-        if (options != null)
-        {
-            getProductConfiguredPopulator().populate(productModel, productData, options);
-        }
 
         return productData;
     }
@@ -43,13 +36,5 @@ public class DefaultMyextensionProductFacade implements MyextensionProductFacade
 
     public void setProductService(ProductService productService) {
         this.productService = productService;
-    }
-
-    public ConfigurablePopulator<ProductModel, ProductData, ProductOption> getProductConfiguredPopulator() {
-        return productConfiguredPopulator;
-    }
-
-    public void setProductConfiguredPopulator(ConfigurablePopulator<ProductModel, ProductData, ProductOption> productConfiguredPopulator) {
-        this.productConfiguredPopulator = productConfiguredPopulator;
     }
 }
