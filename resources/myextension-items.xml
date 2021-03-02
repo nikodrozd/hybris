@@ -40,5 +40,13 @@
 		<itemtype code="Actor" autocreate="true" generate="true" extends="GenericItem" jaloclass="training.my.jalo.Film">
 			<deployment table="Actor" typecode="11002"/>
 		</itemtype>
+		<itemtype code="User" autocreate="false" generate="false">
+			<attributes>
+				<attribute qualifier="age" type="java.lang.Integer" generate="true">
+					<persistence type="property"/>
+					<modifiers read="true" write="true" optional="true"/>
+				</attribute>
+			</attributes>
+		</itemtype>
 	</itemtypes>
 </items>

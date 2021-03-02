@@ -108,11 +108,15 @@
 
     <bean id="myextensionProductPopulator" class="training.my.converters.populator.MyextensionProductPopulator"/>
 
-<!--    <bean parent="configurablePopulatorModification">-->
-<!--        <property name="target" ref="productBasicPopulator" />-->
-<!--        <property name="keyType" value="java.lang.String" />-->
-<!--        <property name="key" value="customTestField" />-->
-<!--        <property name="add" ref="myextensionProductPopulator" />-->
-<!--    </bean>-->
+    <bean id="myextensionPrepareInterceptor" class="training.my.interceptors.MyextensionPrepareInterceptor"
+           autowire="byName"/>
+
+    <bean id="MyextensionPrepareInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="myextensionPrepareInterceptor"/>
+        <property name="typeCode" value="User"/>
+    </bean>
+
+    <bean id="myextensionAddToCartEventListener" class="training.my.event.listeners.MyextensionAddToCartEventListener" parent="abstractEventListener"/>
 
 </beans>

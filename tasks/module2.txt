@@ -1,0 +1,29 @@
+Comments for Module 2 tasks:
+1. Add a service that will return the total number of orders, the latest order and a user with the most orders. Cover this class with unit tests.
+//Added MyextensionOrderService to training/my/service, implementation placed in impl package. Tests are added to training/my/service/impl
+
+2. Write integration tests to the previous class
+//Added training/my/service/impl/DefaultMyextensionOrderServiceIntegrationTest.java
+
+3. Add new field to the ProductData. It should be a String containing product code+”_”+product PK. Add corresponding logic to the populator. Check your implementation calling the corresponding facade via groovy scripting console in /hac.
+//Created new facade with implementation in package training/my/facades and populator training/my/converters/populator/MyextensionProductPopulator.java
+
+4. Display the total number of orders (from task 1) on the frontend
+//Added new variable totalNumberOfOrders to web/webroot/WEB-INF/views/welcome.jsp. Value for this variable is set in training/my/controller/MyextensionHelloController.java
+
+5. Add “Age” attribute for a user. Create an interceptor that doesn’t allow to set the age below 0.
+//Added new attribute to myextension-items.xml. Added interceptor training/my/interceptors/MyextensionPrepareInterceptor.java. Added integration test training/my/interceptors/MyextensionPrepareInterceptorIntegrationTest.java
+
+6. Create event listener that will add logs to console each time user has added something to the cart.
+//Added new listener training/my/event/listeners/MyextensionAddToCartEventListener.java for handling AddToCartEvent types. It is possible to test it using Groovy console with following code
+import de.hybris.platform.servicelayer.event.EventService;
+import de.hybris.eventtracking.model.events.AddToCartEvent;
+
+EventService eventService = spring.getBean("eventService");
+
+AddToCartEvent event = new AddToCartEvent();
+        event.setUserId("testUser");
+        event.setCartId("testCart");
+        event.setProductName("productName");
+
+eventService.publishEvent(event);
