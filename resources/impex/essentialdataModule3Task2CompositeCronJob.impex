@@ -1,0 +1,23 @@
+#creating new cron job for job myextensionCurrentNumberOfUsersJob
+INSERT_UPDATE CronJob; code[unique=true];job(code);sessionLanguage(isocode)
+                     ;myextensionUsersCronJob;myextensionCurrentNumberOfUsersJob;en
+
+#removing cron job trigger from task 1 (see essentialdataModule3Task1CronJob.impex)
+REMOVE Trigger;cronJob(code)[unique=true];
+              ;myextensionOrdersCronJob
+
+#adding 1st composite entry with myextensionUsersCronJob
+INSERT_UPDATE CompositeEntry; code[unique=true];compositeCronJob(code);executableCronJob(code);
+                            ;compositeEntry1;myextensionCompositeCronJob;myextensionUsersCronJob
+
+#adding 2nd composite entry with myextensionOrdersCronJob
+INSERT_UPDATE CompositeEntry; code[unique=true];compositeCronJob(code);executableCronJob(code);
+                            ;compositeEntry2;myextensionCompositeCronJob;myextensionOrdersCronJob
+
+#creating new composite cron job; myextensionCurrentNumberOfOrdersJob used just because of mandatory parameter job
+INSERT_UPDATE CompositeCronJob; code[unique=true];job(code);compositeEntries(code);sessionLanguage(isocode)
+                     ;myextensionCompositeCronJob;compositeJobPerformable;compositeEntry1, compositeEntry2;en
+
+#creating trigger for composite cron job
+INSERT_UPDATE Trigger;cronjob(code)[unique=true];cronExpression
+                     ;myextensionCompositeCronJob; 0 0/2 * * * ?

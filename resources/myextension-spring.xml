@@ -74,6 +74,10 @@
     <bean id="myextensionOrderService" class="training.my.service.impl.DefaultMyextensionOrderService">
         <property name="flexibleSearchService" ref="flexibleSearchService"/>
     </bean>
+
+    <bean id="myextensionUserService" class="training.my.service.impl.DefaultMyextensionUserService">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
 	
     <bean id="myextensionSystemSetup" class="training.my.setup.MyextensionSystemSetup">
         <!-- constructor arg injection example -->
@@ -92,15 +96,6 @@
         <property name="productService" ref="productService"/>
     </bean>
 
-<!--    <bean id="productConverter" parent="modifyPopulatorList">-->
-<!--        <property name="targetClass" value="de.hybris.platform.commercefacades.product.data.ProductData"/>-->
-<!--        <property name="populators">-->
-<!--            <list>-->
-<!--                <ref bean="myextensionProductPopulator"/>-->
-<!--            </list>-->
-<!--        </property>-->
-<!--    </bean>-->
-
     <bean parent="modifyPopulatorList">
         <property name="list" ref="productConverter" />
         <property name="add" ref="myextensionProductPopulator" />
@@ -118,5 +113,15 @@
     </bean>
 
     <bean id="myextensionAddToCartEventListener" class="training.my.event.listeners.MyextensionAddToCartEventListener" parent="abstractEventListener"/>
+
+    <bean id="myextensionCurrentNumberOfOrdersJob" class="training.my.jobs.MyextensionCurrentNumberOfOrdersJob" 
+          parent="abstractJobPerformable">
+        <property name="myextensionOrderService" ref="myextensionOrderService"/>
+    </bean>
+
+    <bean id="myextensionCurrentNumberOfUsersJob" class="training.my.jobs.MyextensionCurrentNumberOfUsersJob"
+          parent="abstractJobPerformable">
+        <property name="myextensionUserService" ref="myextensionUserService"/>
+    </bean>
 
 </beans>
