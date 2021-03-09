@@ -124,4 +124,17 @@
         <property name="myextensionUserService" ref="myextensionUserService"/>
     </bean>
 
+    <!-- Process resources definition -->
+
+    <bean id="myextProcessDefinition" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource" value="classpath:/processengine/myextprocess.xml"/>
+    </bean>
+
+    <!-- Actions definition -->
+
+    <bean id="myextLogTimeOfAddingAction" class="training.my.actions.MyextLogTimeOfAddingAction" parent="abstractAction"/>
+    <bean id="myextLogTimeOfProductRemoveAction" class="training.my.actions.MyextLogTimeOfProductRemoveAction" parent="abstractAction"/>
+    <bean id="myextLogTimeOfOrderPlacementAction" class="training.my.actions.MyextLogTimeOfOrderPlacementAction" parent="abstractAction"/>
+
+
 </beans>

@@ -44,10 +44,9 @@
 			<attributes>
 				<attribute qualifier="age" type="java.lang.Integer" generate="true">
 					<persistence type="property"/>
-					<modifiers read="true" write="true" optional="true"/>
+					<modifiers read="true" write="true" optional="false" initial="true"/>
 				</attribute>
 			</attributes>
 		</itemtype>
-
 	</itemtypes>
 </items>

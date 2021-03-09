@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<process xmlns="http://www.hybris.de/xsd/processdefinition" name="myextProcessDefinition"
+         start="myextLogTimeOfAddingNode">
+<!--    <wait id="myextWaitForAddedProductToCart" then="myextLogTimeOfAddingAction" prependProcessCode="false">-->
+<!--        <event>AddMyextProductToCartEvent</event>-->
+<!--    </wait>-->
+    <action id="myextLogTimeOfAddingNode" bean="myextLogTimeOfAddingAction">
+        <transition name="OK" to="splitNode"/>
+        <transition name="NOK" to="failed"/>
+    </action>
+    <split id="splitNode">
+        <targetNode name="myextWaitForProductRemove"/>
+        <targetNode name="myextWaitForOrderPlacement"/>
+    </split>
+    <wait id="myextWaitForProductRemove" then="myextLogTimeOfProductRemoveAction" prependProcessCode="false">
+        <event>MyextProductRemoveFromCartEvent</event>
+    </wait>
+    <wait id="myextWaitForOrderPlacement" then="myextLogTimeOfOrderPlacementAction" prependProcessCode="false">
+        <event>OrderPlacementEvent</event>
+    </wait>
+    <action id="myextLogTimeOfProductRemoveAction" bean="myextLogTimeOfProductRemoveAction">
+        <transition name="OK" to="success"/>
+        <transition name="NOK" to="failed"/>
+    </action>
+    <action id="myextLogTimeOfOrderPlacementAction" bean="myextLogTimeOfOrderPlacementAction">
+        <transition name="OK" to="success"/>
+        <transition name="NOK" to="failed"/>
+    </action>
+    <end id="success" state="SUCCEEDED">Everything was fine</end>
+    <end id="failed" state="FAILED">Impossible to write logs</end>
+</process>

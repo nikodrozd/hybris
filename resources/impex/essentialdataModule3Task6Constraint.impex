@@ -1,0 +1,3 @@
+#creating new constraint which restrict to fill User.age with value less then 21
+INSERT_UPDATE MinConstraint;id[unique=true];severity(code,itemtype(code));active;descriptor(enclosingType(code),qualifier);value;
+                            ;UserAgeMinValueConstraint;ERROR:Severity;true;User:age;21;
